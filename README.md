@@ -1,6 +1,7 @@
  == Установка ==
 python3
 sqlite3
+pdftk
 
 pip install -r requirements.txt
 

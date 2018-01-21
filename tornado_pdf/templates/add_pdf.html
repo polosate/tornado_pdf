@@ -1,14 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+        <title>
+                Pdf application
+        </title></head>
 <html>
-
-<title>
-Add document
-</title>
-
 <body>
+
+
+        {% for filename in files %}
+        <div class="row">
+                <div class="col-sm-2">
+                        <a href="file/{{filename[0]}}"> {{filename[0]}} </a>
+                </div>
+
+                <div class="col-sm-1">
+                        pages: <a href="/page/{{filename[0]}}/1">1</a>
+
+                        <a href="/page/{{filename[0]}}/2">2</a>
+                </div>
+                <div class="col-sm-2">
+                        <form class="form-inline" action="/page">
+                                Page: <input type="text" name="page_number" size="2">
+                                <input type="hidden" value="{{filename[0]}}" name="name"/>
+                                <input type="submit" value="show" name="show"/>
+
+                        </form>
+                </div>
+        </div>
+        {% end %}
         <form action="/add" method=post enctype="multipart/form-data">
-        Name:   <input type="text" name="name">
-        Pdf to add:   <input type="file" name="file">
-                <input type="submit" value="Add" name="Submit"/>
+                <div>
+                        Pdf to add: <input type="file" name="file">
+                        <input type="submit" value="Add" name="Submit"/>
+                </div>
         </form>
 </body>
 
